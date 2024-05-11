@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SuperAdmin;
 use App\Services\AuthService;
 use App\Services\MealPlanService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 
 class AdminActionController extends Controller
 {
@@ -63,5 +66,29 @@ class AdminActionController extends Controller
         Auth::logout();
 
         return redirect('/');
+    }
+
+    public function changepassword(Request $request)
+    {
+        $request->validate([
+            'old_password' => ['required', 'string'],
+            'new_password' => ['required', 'string', Password::min(8)->mixedCase()->symbols()],
+            'confirm_password' => ['required', 'same:new_password']
+        ]);
+
+        $auth = Auth::guard('superadmin')->user();
+        $user = SuperAdmin::findorFail($auth->id);
+
+        if (Hash::check($request->old_password, $user->password)) {
+
+            $user->update([
+                'password' => Hash::make($request->new_password)
+            ]);
+
+             return back()->with('success', 'Password Successfully Updated');
+        }else
+        {
+            return back()->with('error', 'Old Password did not match');
+        }
     }
 }

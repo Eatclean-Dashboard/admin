@@ -18,6 +18,7 @@ Route::group(['middleware' => 'auth:superadmin', 'prefix' => 'admin'], function 
     Route::get('/create/user', [AdminController::class, 'adminCreate'])->name('admin.admincreate');
     Route::post('/create/user', [AdminActionController::class, 'adminCreate'])->name('admin.createsuper');
     Route::get('/change-password', [AdminController::class, 'changePassword'])->name('admin.changepassword');
+    Route::post('/change-password', [AdminActionController::class, 'changepassword'])->name('admin.passwordchange');
 
     Route::prefix('users')->group(function () {
         Route::get('/all', [HomeController::class, 'allUsers'])->name('admin.allusers');
