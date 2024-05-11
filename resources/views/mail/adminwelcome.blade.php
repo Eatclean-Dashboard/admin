@@ -14,12 +14,16 @@
         Find Below your Login Details.
     </p>
     <p>
+        <strong>Admin URL:</strong>
+        <a href="https://eatcleanadmin.wcccgroup.us">Click here</a>
+    </p>
+    <p>
         <strong>Username:</strong>
         {{ $user['email'] }}
     </p>
     <p>
         <strong>Password:</strong>
-        12345678
+        {{ $password }}
     </p>
     <p>
         Best regards,

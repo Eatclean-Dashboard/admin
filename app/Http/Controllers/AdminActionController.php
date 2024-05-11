@@ -45,7 +45,7 @@ class AdminActionController extends Controller
     {
         $request->validate([
             'name' => ['required'],
-            'email' => ['required', 'email', 'email:rfc,dns', 'max:100']
+            'email' => ['required', 'email', 'email:rfc,dns', 'max:100', 'unique:super_admins,email']
         ]);
 
         return $this->auth->createAdminUser($request);

@@ -6,6 +6,7 @@ use App\Mail\WelcomeAdminMail;
 use App\Models\SuperAdmin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class AuthService
 {
@@ -13,15 +14,16 @@ class AuthService
     {
         try {
 
+            $password = Str::random(10);
             $user = SuperAdmin::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'phone_number' => $request->phone_number,
-                'password' => bcrypt('12345678'),
+                'password' => bcrypt($password),
                 'status' => "active"
             ]);
 
-            Mail::to($request->email)->send(new WelcomeAdminMail($user));
+            Mail::to($request->email)->send(new WelcomeAdminMail($user, $password));
 
             return back()->with('success', "Account created successfully");
         } catch (\Exception $e) {

@@ -14,13 +14,15 @@ class WelcomeAdminMail extends Mailable implements ShouldQueue
     use Queueable, SerializesModels;
 
     public $user;
+    public $password;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($user)
+    public function __construct($user, $password)
     {
         $this->user = $user;
+        $this->password = $password;
     }
 
     /**
@@ -41,7 +43,8 @@ class WelcomeAdminMail extends Mailable implements ShouldQueue
         return new Content(
             view: 'mail.adminwelcome',
             with: [
-                'user' => $this->user
+                'user' => $this->user,
+                'password' => $this->password
             ]
         );
     }
