@@ -44,7 +44,7 @@ class WelcomeAdminMail extends Mailable implements ShouldQueue
             view: 'mail.adminwelcome',
             with: [
                 'user' => $this->user,
-                'password' => $this->password
+                'pass' => $this->password
             ]
         );
     }

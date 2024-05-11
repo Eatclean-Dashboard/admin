@@ -23,7 +23,7 @@
     </p>
     <p>
         <strong>Password:</strong>
-        {{ $password }}
+        {{ $pass }}
     </p>
     <p>
         Best regards,
