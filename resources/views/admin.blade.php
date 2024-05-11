@@ -114,15 +114,15 @@
                     <div class="dropdown d-inline-block ms-2">
                         <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="rounded-circle header-profile-user" src="{{ $path }}/assets/images/users/avatar-1.jpg"
+                            <img class="rounded-circle header-profile-user" src="{{ $path }}/assets/images/users/avatar-1.png"
                                 alt="Header Avatar">
                         </button>
                         <div class="dropdown-menu dropdown-menu-end">
                             <!-- item-->
                             <a class="dropdown-item" href="#"><i class="dripicons-user font-size-16 align-middle me-2"></i>Profile</a>
-                            <a class="dropdown-item d-block" href="#"><span class="badge bg-success float-end">5</span><i  class="dripicons-gear font-size-16 align-middle me-2"></i> Settings</a>
+                            <a class="dropdown-item d-block" href="{{ route('admin.changepassword') }}"><i  class="dripicons-gear font-size-16 align-middle me-2"></i> Settings</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#"><i class="dripicons-exit font-size-16 align-middle me-2"></i>Logout</a>
+                            <a class="dropdown-item" href="{{ route('admin.logout') }}"><i class="dripicons-exit font-size-16 align-middle me-2"></i>Logout</a>
                         </div>
                     </div>
                 </div>
@@ -226,9 +226,9 @@
 
 
     <!-- JAVASCRIPT -->
-    
+
     {{-- <script src="{{ $path }}/assets/libs/jquery/jquery.min.js"></script> --}}
-    
+
     <script src="{{ $path }}/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="{{ $path }}/assets/libs/metismenu/metisMenu.min.js"></script>
     <script src="{{ $path }}/assets/libs/simplebar/simplebar.min.js"></script>
