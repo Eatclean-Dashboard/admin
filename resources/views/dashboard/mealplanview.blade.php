@@ -10,6 +10,7 @@
                         <div class="d-flex justify-content-between mb-3 border-bottom">
                             <div class="mt-2">
                                 <h4>{{ $mealPlan->name }}</h4>
+                                <p>{{ $mealPlan->description }}</p>
                             </div>
                         </div>
                         @forelse ($groupedPlans as $type => $plans)

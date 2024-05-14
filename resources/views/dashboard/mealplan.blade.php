@@ -36,10 +36,48 @@
                                         <td>{{ Str::limit($mealplan->description, 50, '...') }}</td>
                                         <td>
                                             <a href="{{ route('admin.mealplanview', $mealplan->id) }}" title="view" class="btn btn-success btn-sm"><i class="dripicons-preview"></i></a>
-                                            <a href="" class="btn btn-info btn-sm"><i class="dripicons-document-edit"></i></a>
+                                            <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target=".editplan{{ $mealplan->id }}"><i class="dripicons-document-edit"></i></button>
                                             <a href="" class="btn btn-danger btn-sm"><i class="dripicons-trash"></i></a>
                                         </td>
                                     </tr>
+
+                                    <div class="modal fade editplan{{ $mealplan->id }}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title mt-0">Edit Meal Plan</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close">
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ route('admin.updatemealplan', $mealplan->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <div class="mb-3">
+                                                            <label for="">Name</label>
+                                                            <input type="text" name="name" class="form-control" value="{{ $mealplan->name }}" placeholder="E.g Vegetarian">
+                                                            @if ($errors->has('name'))
+                                                                <div class=" text-danger text-start">{{ $errors->first('name') }}</div>
+                                                            @endif
+                                                        </div>
+                                                        <div>
+                                                            <label for="">Description</label>
+                                                            <input type="text" name="description" value="{{ $mealplan->description }}" class="form-control">
+                                                            @if ($errors->has('description'))
+                                                                <div class=" text-danger text-start">{{ $errors->first('description') }}</div>
+                                                            @endif
+                                                        </div>
+                                                        <div class="mt-3">
+                                                            <button type="submit" class="btn btn-success">Update</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                    </div>
                                 @empty
                                     <tr class="text-center">
                                         <td colspan="7">No data available.</td>

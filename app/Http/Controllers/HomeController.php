@@ -107,6 +107,11 @@ class HomeController extends Controller
         return view('dashboard.mealplanview', compact('mealPlan', 'groupedPlans', 'snacks'));
     }
 
+    public function updateMealPlan(Request $request, $id)
+    {
+        return $this->mealplan->updateMealPlan($request, $id);
+    }
+
     public function plan()
     {
         $plans = Plan::with('mealplan')->paginate(25);

@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth:superadmin', 'prefix' => 'admin'], function 
         Route::get('/mealplan', [HomeController::class, 'mealPlan'])->name('admin.mealplan');
         Route::post('/mealplan/add', [HomeController::class, 'addMealPlan'])->name('admin.addmealplan');
         Route::get('/view/mealplan/{id}', [HomeController::class, 'viewMealPlan'])->name('admin.mealplanview');
+        Route::patch('/update/mealplan/{id}', [HomeController::class, 'updateMealPlan'])->name('admin.updatemealplan');
 
         //Plan
         Route::get('/plan', [HomeController::class, 'plan'])->name('admin.plan');

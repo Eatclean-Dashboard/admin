@@ -75,6 +75,18 @@ class MealPlanService
             return back()->with('error', $e->getMessage());
         }
     }
+
+    public function updateMealPlan($request, $id)
+    {
+        $meal = MealPlan::findOrFail($id);
+
+        $meal->update([
+            'name' => $request->name,
+            'description' => $request->description
+        ]);
+
+        return back()->with('success', "Updated successfully");
+    }
 }
 
 
