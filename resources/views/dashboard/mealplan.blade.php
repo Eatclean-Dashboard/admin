@@ -139,15 +139,15 @@
                     <form action="{{ route('admin.addmealplan') }}" method="POST">
                         @csrf
                         <div class="mb-3">
-                            <label for="">Name</label>
+                            <label for="">Name <span class="text-danger">*</span></label>
                             <input type="text" name="name" class="form-control" value="{{ old('name') }}" placeholder="E.g Vegetarian">
                             @if ($errors->has('name'))
                                 <div class=" text-danger text-start">{{ $errors->first('name') }}</div>
                             @endif
                         </div>
                         <div>
-                            <label for="">Description</label>
-                            <input type="text" name="description" value="{{ old('description') }}" class="form-control">
+                            <label for="">Description <span class="text-danger">*</span></label>
+                            <input type="text" name="description" value="{{ old('description') }}" placeholder="E.g Focuses on plant-based foods such as fruits..." class="form-control">
                             @if ($errors->has('description'))
                                 <div class=" text-danger text-start">{{ $errors->first('description') }}</div>
                             @endif
