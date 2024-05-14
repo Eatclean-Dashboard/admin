@@ -13,7 +13,8 @@ class MealPlanService
     {
         try {
             MealPlan::create([
-                'name' => $request->name
+                'name' => $request->name,
+                'description' => $request->description
             ]);
 
             return back()->with('success', "Created successfully");
@@ -41,7 +42,7 @@ class MealPlanService
             }else {
                 $oval = null;
             }
-            
+
             Plan::create([
                 'meal_plan_id' => $request->meal_plan_id,
                 'name' => $request->name,

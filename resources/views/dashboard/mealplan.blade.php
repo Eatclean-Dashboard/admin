@@ -29,12 +29,16 @@
                             </thead>
 
                             <tbody>
-                                @forelse ($mealPlans as $meanplan)
+                                @forelse ($mealPlans as $mealplan)
                                     <tr>
                                         <td>{{ $loop->index + $mealPlans->firstItem() }}</td>
-                                        <td>{{ $meanplan->name }}</td>
-                                        <td>{{ Str::limit($meanplan->description, 50, '...') }}</td>
-                                        <td></td>
+                                        <td>{{ $mealplan->name }}</td>
+                                        <td>{{ Str::limit($mealplan->description, 50, '...') }}</td>
+                                        <td>
+                                            <a href="{{ route('admin.mealplanview', $mealplan->id) }}" title="view" class="btn btn-success btn-sm"><i class="dripicons-preview"></i></a>
+                                            <a href="" class="btn btn-info btn-sm"><i class="dripicons-document-edit"></i></a>
+                                            <a href="" class="btn btn-danger btn-sm"><i class="dripicons-trash"></i></a>
+                                        </td>
                                     </tr>
                                 @empty
                                     <tr class="text-center">
@@ -96,8 +100,19 @@
                 <div class="modal-body">
                     <form action="{{ route('admin.addmealplan') }}" method="POST">
                         @csrf
+                        <div class="mb-3">
+                            <label for="">Name</label>
+                            <input type="text" name="name" class="form-control" value="{{ old('name') }}" placeholder="E.g Vegetarian">
+                            @if ($errors->has('name'))
+                                <div class=" text-danger text-start">{{ $errors->first('name') }}</div>
+                            @endif
+                        </div>
                         <div>
-                            <input type="text" name="name" class="form-control" placeholder="E.g Vegetarian">
+                            <label for="">Description</label>
+                            <input type="text" name="description" value="{{ old('description') }}" class="form-control">
+                            @if ($errors->has('description'))
+                                <div class=" text-danger text-start">{{ $errors->first('description') }}</div>
+                            @endif
                         </div>
                         <div class="mt-3">
                             <button type="submit" class="btn btn-success">Add</button>

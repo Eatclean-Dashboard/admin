@@ -91,10 +91,20 @@ class HomeController extends Controller
     public function addMealPlan(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:100']
+            'name' => ['required', 'string', 'max:100'],
+            'description' => ['required', 'string', 'max:100']
         ]);
 
         return $this->mealplan->addMealPlan($request);
+    }
+
+    public function viewMealPlan($id)
+    {
+        $mealPlan = MealPlan::with(['plans', 'snacks'])->findOrFail($id);
+        $groupedPlans = $mealPlan?->plans->groupBy('type');
+        $snacks = $mealPlan?->snacks;
+
+        return view('dashboard.mealplanview', compact('mealPlan', 'groupedPlans', 'snacks'));
     }
 
     public function plan()
