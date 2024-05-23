@@ -90,7 +90,7 @@
 
                             <div class="row mt-3">
                                 <div class="col">
-                                    <button class="btn btn-success">Edit</button>
+                                    <a href="{{ route('admin.editplan', $plan->id) }}"><button class="btn btn-success">Edit</button></a>
                                 </div>
                             </div>
                         </div>

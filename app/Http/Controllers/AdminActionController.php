@@ -91,4 +91,9 @@ class AdminActionController extends Controller
             return back()->with('error', 'Old Password did not match');
         }
     }
+
+    public function planUpdate(Request $request, $id)
+    {
+        return $this->service->updatePlan($request, $id);
+    }
 }

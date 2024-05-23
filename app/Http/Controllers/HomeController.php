@@ -133,6 +133,14 @@ class HomeController extends Controller
         return view('dashboard.planadd', compact('mealplans'));
     }
 
+    public function planEdit($id)
+    {
+        $plan = Plan::with('mealplan')->findOrFail($id);
+        $mealplans = MealPlan::get();
+
+        return view('dashboard.planedit', compact('plan', 'mealplans'));
+    }
+
     public function planImport(Request $request)
     {
         $request->validate([
