@@ -47,7 +47,7 @@
                                 <div class="col-md-4">
                                     <h5>Price</h5>
                                     <p>
-                                        {{ number_format($plan?->price) }}
+                                        {{ is_numeric($plan?->price) ? number_format((float)$plan->price) : 'N/A' }}
                                     </p>
                                 </div>
                                 <div class="col-md-4">
