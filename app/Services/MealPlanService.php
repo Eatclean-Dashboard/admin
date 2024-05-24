@@ -111,7 +111,7 @@ class MealPlanService
                 $rec = $file->move('rectangular_images', $filename, 'public');
                 $rec_path = config('services.base_url') . $rec;
             }else {
-                $rec_path = null;
+                $rec_path = $plan->image_rectangular;
             }
 
             if ($request->hasFile('image_oval')) {
@@ -129,7 +129,7 @@ class MealPlanService
                 $oval = $file->move('oval_images', $filename, 'public');
                 $oval_path = config('services.base_url') . $oval;
             }else {
-                $oval_path = null;
+                $oval_path = $plan->image_oval;
             }
 
             $plan->update([
