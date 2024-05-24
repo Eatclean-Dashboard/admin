@@ -47,7 +47,7 @@
                                 <div class="col-md-4">
                                     <h5>Price</h5>
                                     <p>
-                                        {{ number_format($plan->price) }}
+                                        {{ number_format($plan?->price) }}
                                     </p>
                                 </div>
                                 <div class="col-md-4">
