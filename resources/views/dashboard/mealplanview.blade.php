@@ -44,8 +44,8 @@
                                             <td>{{ $mealplan->protein }}</td>
                                             <td>{{ $mealplan->fat }}</td>
                                             <td>{{ $mealplan->procedure }}</td>
-                                            <td>{{ $mealplan->image_rectangular }}</td>
-                                            <td>{{ $mealplan->image_oval }}</td>
+                                            <td><img src="{{ $mealplan->image_rectangular }}" width="50" height="50" alt=""></td>
+                                            <td><img src="{{ $mealplan->image_oval }}" width="50" height="50" alt=""></td>
                                         </tr>
                                     @empty
                                         <tr class="text-center">

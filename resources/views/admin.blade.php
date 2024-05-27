@@ -167,6 +167,18 @@
 
                         <li>
                             <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <i class="dripicons-photo"></i>
+                                <span> Blog </span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="">Category</a></li>
+                                <li><a href="">Create Blog</a></li>
+                                <li><a href="">View Blog</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
                                 <i class="dripicons-user-group"></i>
                                 <span> Users </span>
                             </a>
