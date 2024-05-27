@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminActionController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,18 @@ Route::group(['middleware' => 'auth:superadmin', 'prefix' => 'admin'], function 
         Route::get('/all', [HomeController::class, 'allUsers'])->name('admin.allusers');
         Route::get('/active', [HomeController::class, 'activeUsers'])->name('admin.active');
         Route::get('/inactive', [HomeController::class, 'inactiveUsers'])->name('admin.inactive');
+    });
+
+    Route::prefix('blog')->group(function () {
+        Route::get('/category', [BlogController::class, 'category'])->name('admin.blogcategory');
+        Route::post('/category', [BlogController::class, 'createCategory'])->name('admin.createblogcategory');
+        Route::get('/create', [BlogController::class, 'createBlogView'])->name('admin.createblog');
+        Route::post('/create', [BlogController::class, 'storeBlog'])->name('admin.storeblog');
+        Route::get('/', [BlogController::class, 'blogView'])->name('admin.viewblog');
+        Route::get('/edit/{id}', [BlogController::class, 'blogEdit'])->name('admin.blogedit');
+        Route::patch('/update/{id}', [BlogController::class, 'blogUpdate'])->name('admin.updateblog');
+        Route::get('/view/{id}', [BlogController::class, 'viewSingleBlog'])->name('admin.viewsingleblog');
+        Route::delete('/delete/{id}', [BlogController::class, 'deleteBlog'])->name('admin.blogdelete');
     });
 
     Route::prefix('meal')->group(function () {

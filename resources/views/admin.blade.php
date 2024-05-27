@@ -19,6 +19,8 @@
     <link href="{{ $path }}/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
 </head>
 <body data-sidebar="dark">
 
@@ -171,9 +173,9 @@
                                 <span> Blog </span>
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="">Category</a></li>
-                                <li><a href="">Create Blog</a></li>
-                                <li><a href="">View Blog</a></li>
+                                <li><a href="{{ route('admin.blogcategory') }}">Category</a></li>
+                                <li><a href="{{ route('admin.createblog') }}">Create Blog</a></li>
+                                <li><a href="{{ route('admin.viewblog') }}">View Blog</a></li>
                             </ul>
                         </li>
 
