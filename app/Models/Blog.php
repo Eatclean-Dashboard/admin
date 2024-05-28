@@ -17,7 +17,8 @@ class Blog extends Model
         'tags',
         'content',
         'status',
-        'publish_date'
+        'publish_date',
+        'is_published'
     ];
 
     public function blogcategory()

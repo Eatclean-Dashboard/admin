@@ -30,8 +30,9 @@ class BlogPublish extends Command
         $now = Carbon::now();
 
         Blog::where('status', 'draft')
+            ->where('is_published', 0)
             ->where('publish_date', '<=', $now)
-            ->update(['status' => 'publish', 'publish_date' => null]);
+            ->update(['status' => 'publish', 'is_published' => 1, 'publish_date' => null]);
 
         $this->info('Blog post statuses updated successfully.');
     }

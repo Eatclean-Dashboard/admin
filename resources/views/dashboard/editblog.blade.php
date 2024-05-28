@@ -81,7 +81,7 @@
 
                                             <div class="col-md-4">
                                                 <div class="mb-3">
-                                                    <label class="form-label">Status <span class="text-danger">*</span></label>
+                                                    <label class="form-label">Status</label>
                                                     <select name="status" id="" class="form-control">
                                                         <option value="publish"{{ $blog->status === 'publish' ? ' selected' : '' }}>Publish</option>
                                                         <option value="draft"{{ $blog->status === 'draft' ? ' selected' : '' }}>Draft</option>

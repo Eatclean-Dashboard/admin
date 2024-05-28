@@ -60,7 +60,7 @@
                                             <div class="col-md-4">
                                                 <div class="mb-3">
                                                     <label class="form-label">Tags <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" name="tags" id="tags-input" value="{{ old('tags') ? json_encode(old('tags')) : '' }}">
+                                                    <input type="text" class="form-control" name="tags" id="tags-input" value="{{ old('tags') }}">
                                                     @if ($errors->has('tags'))
                                                         <div class=" text-danger text-start">{{ $errors->first('tags') }}</div>
                                                     @endif
@@ -70,13 +70,13 @@
                                             <div class="col-md-4">
                                                 <div class="mb-3">
                                                     <label class="form-label">Publish date (Set date you want post to be published) </label>
-                                                    <input type="datetime-local" class="form-control" name="publish_date">
+                                                    <input type="datetime-local" class="form-control" name="publish_date" id="publish_date">
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-4">
+                                            <div class="col-md-4" id="status_div">
                                                 <div class="mb-3">
-                                                    <label class="form-label">Status <span class="text-danger">*</span></label>
+                                                    <label class="form-label">Status</label>
                                                     <select name="status" id="" class="form-control">
                                                         <option value="">Choose</option>
                                                         <option value="publish">Publish</option>
@@ -125,6 +125,19 @@
                 maxHeight: null,
                 focus: true
             });
+        });
+    </script>
+
+    <script>
+        document.getElementById('publish_date').addEventListener('change', function() {
+            var publishDate = this.value;
+            var statusDiv = document.getElementById('status_div');
+
+            if (publishDate) {
+                statusDiv.style.display = 'none';
+            } else {
+                statusDiv.style.display = 'block';
+            }
         });
     </script>
 @endsection

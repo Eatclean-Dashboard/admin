@@ -41,7 +41,6 @@ class BlogController extends Controller
             'category_id' => ['required', 'string', 'exists:blog_categories,id'],
             'image' => ['required', 'image', 'mimes:png,jpg,jpeg', 'max:2048'],
             'tags' => ['required', 'string'],
-            'status' => ['required', 'string'],
             'content' => ['required', 'string']
         ]);
 

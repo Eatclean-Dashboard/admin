@@ -18,7 +18,7 @@ class BlogService
     public function createCategory($request)
     {
         try {
-            
+
             BlogCategory::create([
                 'name' => $request->name,
                 'slug' => Str::slug($request->name)
@@ -43,6 +43,12 @@ class BlogService
 
             $date = $request->input('publish_date') ?? null;
 
+            if($date !== null){
+                $status = 'draft';
+            } else{
+                $status = $request->status;
+            }
+
             $tagsArray = json_decode($request->input('tags'), true);
 
             $tags = array_map(function($tag) {
@@ -60,6 +66,8 @@ class BlogService
                 $path = null;
             }
 
+            $is_published = $request->status === "publish" ? 1 : 0;
+
             Blog::create([
                 'title' => $request->title,
                 'slug' => Str::slug($request->title),
@@ -68,7 +76,8 @@ class BlogService
                 'tags' => $tagsAsString,
                 'content' => $request->content,
                 'publish_date' => $date,
-                'status' => $request->status,
+                'status' => $status,
+                'is_published' => $is_published
             ]);
 
             return back()->with('success', 'Created successfully');
