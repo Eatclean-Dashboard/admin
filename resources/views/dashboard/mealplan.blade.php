@@ -51,7 +51,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form action="{{ route('admin.updatemealplan', $mealplan->id) }}" method="POST">
+                                                    <form action="{{ route('admin.updatemealplan', $mealplan->id) }}" method="POST" enctype="multipart/form-data">
                                                         @csrf
                                                         @method('PATCH')
                                                         <div class="mb-3">
@@ -66,6 +66,14 @@
                                                             <input type="text" name="description" value="{{ $mealplan->description }}" class="form-control">
                                                             @if ($errors->has('description'))
                                                                 <div class=" text-danger text-start">{{ $errors->first('description') }}</div>
+                                                            @endif
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="">Image</label>
+                                                            <input type="file" name="image" class="form-control">
+                                                            <img src="{{ $mealplan->image }}" width="60" height="60" class="mt-3" alt="">
+                                                            @if ($errors->has('image'))
+                                                                <div class=" text-danger text-start">{{ $errors->first('image') }}</div>
                                                             @endif
                                                         </div>
                                                         <div class="mt-3">
@@ -136,7 +144,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('admin.addmealplan') }}" method="POST">
+                    <form action="{{ route('admin.addmealplan') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label for="">Name <span class="text-danger">*</span></label>
@@ -150,6 +158,13 @@
                             <input type="text" name="description" value="{{ old('description') }}" placeholder="E.g Focuses on plant-based foods such as fruits..." class="form-control">
                             @if ($errors->has('description'))
                                 <div class=" text-danger text-start">{{ $errors->first('description') }}</div>
+                            @endif
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Image</label>
+                            <input type="file" name="image" class="form-control">
+                            @if ($errors->has('image'))
+                                <div class=" text-danger text-start">{{ $errors->first('image') }}</div>
                             @endif
                         </div>
                         <div class="mt-3">

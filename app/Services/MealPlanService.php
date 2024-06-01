@@ -12,9 +12,21 @@ class MealPlanService
     public function addMealPlan($request)
     {
         try {
+
+            if($request->hasFile('image')){
+                $file = $request->file('image');
+                $filename = time() . rand(10, 1000) . '.' . $file->extension();
+                $file->move('meal_plan_image', $filename, 'public');
+                $mealplan_path = config('services.base_url') . 'meal_plan_image/' . $filename;
+
+            }else {
+                $mealplan_path = null;
+            }
+
             MealPlan::create([
                 'name' => $request->name,
-                'description' => $request->description
+                'description' => $request->description,
+                'image' => $mealplan_path
             ]);
 
             return back()->with('success', "Created successfully");
@@ -82,9 +94,29 @@ class MealPlanService
     {
         $meal = MealPlan::findOrFail($id);
 
+        if($request->hasFile('image')){
+
+            if ($meal->image) {
+                $filename = basename($meal->image);
+                $oldPath = public_path('meal_plan_image/' . $filename);
+                if (file_exists($oldPath)) {
+                    unlink($oldPath);
+                }
+            }
+
+            $file = $request->file('image');
+            $filename = time() . rand(10, 1000) . '.' . $file->extension();
+            $file->move('meal_plan_image', $filename, 'public');
+            $mealplan_path = config('services.base_url') . 'meal_plan_image/' . $filename;
+
+        }else {
+            $mealplan_path = $meal->image;
+        }
+
         $meal->update([
             'name' => $request->name,
-            'description' => $request->description
+            'description' => $request->description,
+            'image' => $mealplan_path
         ]);
 
         return back()->with('success', "Updated successfully");
