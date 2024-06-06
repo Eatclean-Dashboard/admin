@@ -20,11 +20,7 @@ class FoodImport implements ToCollection, WithHeadingRow, WithChunkReading, With
         foreach ($rows as $row)
         {
             Food::create([
-                'name' => $row['name'],
-                'calories' => $row['calories'],
-                'carbs' => $row['carbs'],
-                'protein' => $row['protein'],
-                'total_fat' => $row['total_fat']
+                'name' => $row['name']
             ]);
         }
     }
