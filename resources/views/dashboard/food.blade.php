@@ -22,10 +22,6 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Name</th>
-                                    <th>Calories (g)</th>
-                                    <th>Carbs (g)</th>
-                                    <th>Protein (g)</th>
-                                    <th>Total Fat (g)</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -35,10 +31,6 @@
                                     <tr>
                                         <td>{{ $loop->index + $foods->firstItem() }}</td>
                                         <td>{{ $food->name }}</td>
-                                        <td>{{ $food->calories }}</td>
-                                        <td>{{ $food->carbs }}</td>
-                                        <td>{{ $food->protein }}</td>
-                                        <td>{{ $food->total_fat }}</td>
                                         <td></td>
                                     </tr>
                                 @empty
