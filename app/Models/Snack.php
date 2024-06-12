@@ -17,7 +17,8 @@ class Snack extends Model
         'calories',
         'carbs',
         'protein',
-        'fat'
+        'fat',
+        'image'
     ];
 
     public function mealplan()

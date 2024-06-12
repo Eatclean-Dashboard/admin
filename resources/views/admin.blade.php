@@ -164,6 +164,7 @@
                             <ul class="sub-menu" aria-expanded="false">
                                 <li><a href="{{ route('admin.mealplan') }}">Meal Plan</a></li>
                                 <li><a href="{{ route('admin.plan') }}">Plan</a></li>
+                                <li><a href="{{ route('admin.snack') }}">Snack</a></li>
                             </ul>
                         </li>
 

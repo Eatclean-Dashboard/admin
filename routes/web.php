@@ -53,6 +53,11 @@ Route::group(['middleware' => 'auth:superadmin', 'prefix' => 'admin'], function 
         Route::post('create/plan', [AdminActionController::class, 'createPlan'])->name('admin.createplan');
         Route::post('/import/plan', [HomeController::class, 'planImport'])->name('admin.planimport');
         Route::patch('/update/plan/{id}', [AdminActionController::class, 'planUpdate'])->name('admin.updateplan');
+
+        // Snack
+        Route::get('/snack', [HomeController::class, 'snack'])->name('admin.snack');
+        Route::get('/edit/snack/{id}', [HomeController::class, 'snackEdit'])->name('admin.editsnack');
+        Route::patch('/update/snack/{id}', [AdminActionController::class, 'snackUpdate'])->name('admin.updatesnack');
     });
 
 

@@ -6,6 +6,7 @@ use App\Imports\FoodImport;
 use App\Models\Food;
 use App\Models\MealPlan;
 use App\Models\Plan;
+use App\Models\Snack;
 use App\Models\User;
 use App\Services\FoodService;
 use App\Services\MealPlanService;
@@ -148,5 +149,20 @@ class HomeController extends Controller
         ]);
 
         return $this->mealplan->planImport($request);
+    }
+
+    public function snack()
+    {
+        $snacks = Snack::with('mealplan')->paginate(25);
+
+        return view('dashboard.snack', compact('snacks'));
+    }
+
+    public function snackEdit($id)
+    {
+        $snack = Snack::with('mealplan')->findOrFail($id);
+        $mealplans = MealPlan::get();
+
+        return view('dashboard.snackedit', compact('snack', 'mealplans'));
     }
 }

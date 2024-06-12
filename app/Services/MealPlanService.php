@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Imports\PlanImport;
 use App\Models\MealPlan;
 use App\Models\Plan;
+use App\Models\Snack;
 use Maatwebsite\Excel\Facades\Excel;
 
 class MealPlanService
@@ -177,6 +178,47 @@ class MealPlanService
                 'procedure' => $request->procedure,
                 'image_rectangular' => $rec_path,
                 'image_oval' => $oval_path
+            ]);
+
+            return back()->with('success', "Updated successfully");
+
+        } catch (\Exception $e) {
+            return back()->with('error', $e->getMessage());
+        }
+    }
+
+    public function snackUpdate($request, $id)
+    {
+        $snack = Snack::findOrFail($id);
+
+        try {
+
+            if ($request->hasFile('image')) {
+
+                if ($snack->image) {
+                    $filename = basename($snack->image);
+                    $oldPath = public_path('snack_images/' . $filename);
+                    if (file_exists($oldPath)) {
+                        unlink($oldPath);
+                    }
+                }
+
+                $file = $request->file('image');
+                $filename = time() . rand(10, 1000) . '.' . $file->extension();
+                $rec = $file->move('snack_images', $filename, 'public');
+                $rec_path = config('services.base_url') . $rec;
+            }else {
+                $rec_path = $snack->image;
+            }
+
+            $snack->update([
+                'meal_plan_id' => $request->meal_plan_id,
+                'fruit' => $request->fruit,
+                'calories' => $request->calories,
+                'carbs' => $request->carbs,
+                'protein' => $request->protein,
+                'fat' => $request->fat,
+                'image' => $rec_path
             ]);
 
             return back()->with('success', "Updated successfully");

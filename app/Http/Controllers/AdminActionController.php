@@ -96,4 +96,9 @@ class AdminActionController extends Controller
     {
         return $this->service->updatePlan($request, $id);
     }
+
+    public function snackUpdate(Request $request, $id)
+    {
+        return $this->service->snackUpdate($request, $id);
+    }
 }
