@@ -72,6 +72,7 @@
                                         <th>Carbs</th>
                                         <th>Protein</th>
                                         <th>Fat</th>
+                                        <th>Image</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -83,6 +84,7 @@
                                             <td>{{ $snack->carbs }}</td>
                                             <td>{{ $snack->protein }}</td>
                                             <td>{{ $snack->fat }}</td>
+                                            <td><img src="{{ $snack->image }}" width="80" height="80" alt=""></td>
                                         </tr>
                                     @empty
                                         <tr class="text-center">
