@@ -72,7 +72,7 @@
                                         <th>Carbs</th>
                                         <th>Protein</th>
                                         <th>Fat</th>
-                                        <th>Image</th>
+                                        <th>Images</th>
                                     </tr>
                                 </thead>
                                 <tbody>
