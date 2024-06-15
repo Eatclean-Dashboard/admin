@@ -29,6 +29,7 @@
                                     <th>Protein</th>
                                     <th>Fat</th>
                                     <th>Image</th>
+                                    <th>Oval Image</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -44,6 +45,7 @@
                                         <td>{{ $snack->protein }}</td>
                                         <td>{{ $snack->fat }}</td>
                                         <td><img src="{{ $snack->image }}" width="50" height="50" alt=""></td>
+                                        <td><img src="{{ $snack->oval_image }}" width="50" height="50" alt=""></td>
                                         <td>
                                             <a href="{{ route('admin.editsnack', $snack->id) }}" title="Edit">
                                                 <button class="btn btn-success btn-sm"><i class="dripicons-document-edit"></i></button>

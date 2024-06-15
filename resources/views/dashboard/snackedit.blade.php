@@ -1,6 +1,6 @@
 @extends('admin')
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-    
+
 
 @section('content')
 
@@ -93,6 +93,17 @@
                                             <input type="file" class="form-control" name="image">
                                             @if ($errors->has('image'))
                                                 <div class=" text-danger text-start">{{ $errors->first('image') }}</div>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label">Oval Image</label><br>
+                                            <img src="{{ $snack->oval_image }}" class="mb-3" width="80" height="80" alt="">
+                                            <input type="file" class="form-control" name="oval_image">
+                                            @if ($errors->has('oval_image'))
+                                                <div class=" text-danger text-start">{{ $errors->first('oval_image') }}</div>
                                             @endif
                                         </div>
                                     </div>

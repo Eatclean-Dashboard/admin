@@ -211,6 +211,24 @@ class MealPlanService
                 $rec_path = $snack->image;
             }
 
+            if ($request->hasFile('oval_image')) {
+
+                if ($snack->oval_image) {
+                    $filename = basename($snack->oval_image);
+                    $oldPath = public_path('snack_images/' . $filename);
+                    if (file_exists($oldPath)) {
+                        unlink($oldPath);
+                    }
+                }
+
+                $file = $request->file('oval_image');
+                $filename = time() . rand(10, 1000) . '.' . $file->extension();
+                $rec = $file->move('snack_images', $filename, 'public');
+                $oval_path = config('services.base_url') . $rec;
+            }else {
+                $oval_path = $snack->oval_image;
+            }
+
             $snack->update([
                 'meal_plan_id' => $request->meal_plan_id,
                 'fruit' => $request->fruit,
@@ -218,7 +236,8 @@ class MealPlanService
                 'carbs' => $request->carbs,
                 'protein' => $request->protein,
                 'fat' => $request->fat,
-                'image' => $rec_path
+                'image' => $rec_path,
+                'oval_image' => $oval_path
             ]);
 
             return back()->with('success', "Updated successfully");
