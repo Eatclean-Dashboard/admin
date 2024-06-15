@@ -177,6 +177,7 @@
                                 <li><a href="{{ route('admin.blogcategory') }}">Category</a></li>
                                 <li><a href="{{ route('admin.createblog') }}">Create Blog</a></li>
                                 <li><a href="{{ route('admin.viewblog') }}">View Blog</a></li>
+                                <li><a href="{{ route('admin.viewreels') }}">Reels</a></li>
                             </ul>
                         </li>
 

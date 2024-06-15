@@ -71,4 +71,26 @@ class BlogController extends Controller
     {
         return $this->service->deleteBlog($id);
     }
+
+    public function reelsView()
+    {
+        return $this->service->reelsView();
+    }
+
+    public function createReelView()
+    {
+        return $this->service->createReelView();
+    }
+
+    public function storeReel(Request $request)
+    {
+        $request->validate([
+            'title' => ['required', 'string'],
+            'category_id' => ['required', 'string', 'exists:blog_categories,id'],
+            'cover_image' => ['required', 'image', 'mimes:png,jpg,jpeg', 'max:2048'],
+            'video' => ['required', 'mimes:mp4,mov,ogg,qt', 'max:20000']
+        ]);
+
+        return $this->service->storeReel($request);
+    }
 }

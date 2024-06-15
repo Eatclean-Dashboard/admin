@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Blog;
 use App\Models\BlogCategory;
+use App\Models\Reels;
 use Illuminate\Support\Str;
 
 class BlogService
@@ -166,6 +167,70 @@ class BlogService
         $blog->delete();
 
         return back()->with('success', 'Deleted successfully');
+    }
+
+    public function reelsView()
+    {
+        $categories = BlogCategory::get();
+        $reels = Reels::with('blogcategory')->paginate(25);
+
+        return view('dashboard.viewreels', compact('categories', 'reels'));
+    }
+
+    public function createReelView()
+    {
+        $categories = BlogCategory::get();
+
+        return view('dashboard.createreel', compact('categories'));
+    }
+
+    public function storeReel($request)
+    {
+        try {
+
+            $date = $request->input('publish_date') ?? null;
+
+            if($date !== null){
+                $status = 'draft';
+            } else{
+                $status = $request->status;
+            }
+
+            if ($request->hasFile('cover_image')) {
+                $file = $request->file('cover_image');
+                $filename = time() . rand(10, 1000) . '.' . $file->extension();
+                $file->move('reels', $filename, 'public');
+                $path = config('services.base_url') . 'reels/' . $filename;
+            }else {
+                $path = null;
+            }
+
+            if ($request->hasFile('video')) {
+                $file = $request->file('video');
+                $filename = time() . rand(10, 1000) . '.' . $file->extension();
+                $file->move('reels/video', $filename, 'public');
+                $reel_video = config('services.base_url') . 'reels/video/' . $filename;
+            }else {
+                $reel_video = null;
+            }
+
+            $is_published = $request->status === "publish" ? 1 : 0;
+
+            Reels::create([
+                'title' => $request->title,
+                'slug' => Str::slug($request->title),
+                'category_id' => $request->category_id,
+                'cover_image' => $path,
+                'video' => $reel_video,
+                'publish_date' => $date,
+                'status' => $status,
+                'is_published' => $is_published
+            ]);
+
+            return back()->with('success', 'Created successfully');
+        } catch (\Exception $e) {
+            return back()->with('error', $e->getMessage());
+        }
     }
 }
 

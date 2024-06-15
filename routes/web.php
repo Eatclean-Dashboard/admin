@@ -37,6 +37,10 @@ Route::group(['middleware' => 'auth:superadmin', 'prefix' => 'admin'], function 
         Route::patch('/update/{id}', [BlogController::class, 'blogUpdate'])->name('admin.updateblog');
         Route::get('/view/{id}', [BlogController::class, 'viewSingleBlog'])->name('admin.viewsingleblog');
         Route::delete('/delete/{id}', [BlogController::class, 'deleteBlog'])->name('admin.blogdelete');
+
+        Route::get('/reels', [BlogController::class, 'reelsView'])->name('admin.viewreels');
+        Route::get('/reel/create', [BlogController::class, 'createReelView'])->name('admin.createreel');
+        Route::post('/reel/create', [BlogController::class, 'storeReel'])->name('admin.storereel');
     });
 
     Route::prefix('meal')->group(function () {
