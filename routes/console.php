@@ -11,5 +11,6 @@ use Illuminate\Support\Facades\Schedule;
 Schedule::command('queue:work --stop-when-empty')->everyMinute();
 Schedule::command('queue:prune-batches --hours=48 --unfinished=72')->daily();
 Schedule::command('blog:blog-publish')->everyMinute();
+Schedule::command('reel:reel-publish')->everyMinute();
 
 
